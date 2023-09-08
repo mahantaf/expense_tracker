@@ -55,5 +55,6 @@
     <string name="plan_info">Plan Info</string>
     <string name="your_expenses">Your Expenses</string>
     <string name="new_transaction">Add New Transaction</string>
+    <string name="visit_our_website">Visit our website</string>
 
 </resources>

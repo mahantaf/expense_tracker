@@ -107,6 +107,13 @@
                 android:onClick="onClickAddTransaction"
                 android:layout_gravity="center_horizontal"/>
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/visit_our_website"
+                />
+
         </LinearLayout>
     </ScrollView>
 
