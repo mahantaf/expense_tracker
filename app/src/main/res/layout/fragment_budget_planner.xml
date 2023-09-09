@@ -27,7 +27,8 @@
             <TextView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@color/doneColor"/>
+                android:background="@color/doneColor"
+                android:contentDescription="@string/your_wallet_contains_enough_money_for_this_plan" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -44,7 +45,8 @@
             <TextView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@color/worryColor"/>
+                android:background="@color/worryColor"
+                android:contentDescription="@string/the_deadline_of_this_plan_has_passed" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
