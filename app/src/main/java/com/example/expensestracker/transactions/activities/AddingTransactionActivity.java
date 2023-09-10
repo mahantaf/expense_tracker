@@ -1,7 +1,12 @@
 package com.example.expensestracker.transactions.activities;
 
+import static androidx.core.view.ViewCompat.onInitializeAccessibilityNodeInfo;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +30,7 @@ import com.example.expensestracker.budget_categories.BudgetCategoryManager;
 import com.example.expensestracker.transactions.Transaction;
 import com.example.expensestracker.transactions.TransactionManager;
 import com.example.expensestracker.usermoney.UserWallet;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,17 +54,23 @@ public class AddingTransactionActivity extends AppCompatActivity {
 
         try {
             productCategorySpinner = findViewById(R.id.product_category_spinner);
-            productNameTextField  = findViewById(R.id.product_name_textField);
+            productNameTextField = findViewById(R.id.product_name_textField);
             productPriceTextField = findViewById(R.id.product_price_textField);
             transactionDatePicker = findViewById(R.id.date_picker);
 
 
             productCategories = BudgetCategoryManager.getCategoryNames();
 
-            categoriesAdapter = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,productCategories);
+            categoriesAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, productCategories);
             productCategorySpinner.setAdapter(categoriesAdapter);
             productCategorySpinner.setSelection(0);
 
+
+            /*
+             * Added by Mahan
+             * Issue: Clickable Span
+             * ==================================================
+             */
 
             TextView textView = findViewById(R.id.textView);
 
@@ -86,9 +98,28 @@ public class AddingTransactionActivity extends AppCompatActivity {
             textView.setText(spannableString);
             textView.setMovementMethod(LinkMovementMethod.getInstance());
 
+            /*
+             * ==================================================
+             */
 
-        }catch (Exception e)
-        {
+
+            /*
+             * Added by Mahan
+             * Issue: Traversal Order
+             * ==================================================
+             */
+
+            ViewCompat.setAccessibilityDelegate(productPriceTextField, new AccessibilityDelegateCompat() {
+                @Override
+                public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info) {
+                    info.setTraversalAfter(productNameTextField);
+                    info.setTraversalBefore(productCategorySpinner);
+                    super.onInitializeAccessibilityNodeInfo(host, info);
+                }
+            });
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
