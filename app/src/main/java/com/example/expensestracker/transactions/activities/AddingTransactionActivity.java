@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.expensestracker.CustomButton;
 import com.example.expensestracker.R;
 import com.example.expensestracker.budget_categories.BudgetCategory;
 import com.example.expensestracker.budget_categories.BudgetCategoryManager;
@@ -81,7 +82,6 @@ public class AddingTransactionActivity extends AppCompatActivity {
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull View widget) {
-                    Log.i("clickableSpan", "onClick: Here");
                     // Handle the click action by opening the URL in a web browser
                     String url = "https://google.com"; // Replace with your URL
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -115,6 +115,33 @@ public class AddingTransactionActivity extends AppCompatActivity {
                     info.setTraversalAfter(productNameTextField);
                     info.setTraversalBefore(productCategorySpinner);
                     super.onInitializeAccessibilityNodeInfo(host, info);
+                }
+            });
+
+
+            /*
+             * ==================================================
+             */
+
+
+            /*
+             * Added by Mahan
+             * Issue: Custom Button
+             * ==================================================
+             */
+
+            CustomButton customButton = findViewById(R.id.customButton);
+
+            customButton.setOnCustomButtonClickListener(new CustomButton.OnCustomButtonClickListener() {
+                @Override
+                public void onCustomButtonClick() {
+                    // Handle button click here
+                    // Add your custom logic for the button click event
+                    Toast.makeText(AddingTransactionActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
+
+                    String url = "https://google.com"; // Replace with your URL
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
                 }
             });
 

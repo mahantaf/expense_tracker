@@ -122,6 +122,17 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
             />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10.0dp"/>
+
+            <com.example.expensestracker.CustomButton
+                android:id="@+id/customButton"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                />
         </LinearLayout>
     </ScrollView>
 
