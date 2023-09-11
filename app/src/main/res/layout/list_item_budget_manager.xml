@@ -1,54 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:weightSum="3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/category_list_item">
 
-    <LinearLayout
-        android:padding="10dp"
-        android:layout_weight="2"
-        android:layout_width="0dp"
-        android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="horizontal"
+android:weightSum="3"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/category_list_item"
+android:padding="16dp"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/category_name"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="#000"
+        android:textSize="16.0dp"
+        android:text="Category Name"
+
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFF">
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
 
-        <TextView
-            android:id="@+id/category_name"
-            android:padding="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_width="match_parent"
-            android:textColor="#000"
-            android:textSize="16.0dp"
-            android:layout_height="wrap_content"
-            android:text="Category Name"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/expenses_layout"
-        android:layout_gravity="center"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="#fff">
+        android:onClick="handleClick"/>
 
-        <TextView
-            android:id="@+id/max_expenses"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:textColor="#777070"
-            android:textSize="16.0dp"
-            android:layout_height="wrap_content"
-            android:text="$145"/>
+    <TextView
+        android:id="@+id/max_expenses"
+        android:layout_gravity="right"
+        android:textColor="#777070"
+        android:textSize="16.0dp"
+        android:text="$145"
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
 
-    </LinearLayout>
-
-</LinearLayout>
+        android:layout_marginLeft="50dp"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="right"/>
+</RelativeLayout>
