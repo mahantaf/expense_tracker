@@ -58,15 +58,6 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
-        android:layout_margin="5dp"
-        android:importantForAccessibility="no"
-        />
-
     <Button
         android:layout_marginTop="20dp"
         android:id="@+id/add_Budget_button"
