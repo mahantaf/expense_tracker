@@ -1,9 +1,11 @@
 package com.example.expensestracker.budget_categories.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +24,8 @@ public class BudgetCategoryInfoFragment extends DialogFragment implements View.O
 {
     View newBudgetCategoryView;
     boolean isNew;
+
+    String tempText;
     BudgetCategory budgetCategory;
 
     EditText budgetCategoryNameEditText;
@@ -68,6 +72,37 @@ public class BudgetCategoryInfoFragment extends DialogFragment implements View.O
 
         addBudgetCategoryButton.setOnClickListener(this);
 
+        EditText editText = newBudgetCategoryView.findViewById(R.id.custom_edittext);
+
+        editText.setAccessibilityDelegate(new View.AccessibilityDelegate() {
+            @Override
+            public void onInitializeAccessibilityEvent(View host, AccessibilityEvent event) {
+                // Check if the event type is announcing the text content
+                Log.d("Mahan", "TalkBack announced: " + event.getEventType());
+                if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED) {
+
+                    // Get the text announced by TalkBack
+                    Log.d("Mahan", "TalkBack announced: HERE");
+                    Log.d("Mahan", "TalkBack announced: " + editText.getText());
+
+                    tempText = String.valueOf(editText.getText());
+                    editText.setText("");
+
+                // Log the text to the console
+                }
+
+                if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_FOCUSED) {
+                    editText.setText(tempText);
+                }
+
+                if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED) {
+                    if (tempText.length() > 0)
+                        editText.setText(tempText);
+                }
+
+                super.onInitializeAccessibilityEvent(host, event);
+            }
+        });
 
         return newBudgetCategoryView;
     }

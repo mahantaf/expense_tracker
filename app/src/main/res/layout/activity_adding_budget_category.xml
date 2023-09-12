@@ -74,6 +74,12 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <EditText
+        android:id="@+id/custom_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit Text"
+        />
 
     <Button
         android:id="@+id/add_Budget_button"

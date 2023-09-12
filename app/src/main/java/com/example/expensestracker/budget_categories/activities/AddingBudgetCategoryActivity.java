@@ -3,6 +3,10 @@ package com.example.expensestracker.budget_categories.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.expensestracker.R;
@@ -37,5 +41,6 @@ public class AddingBudgetCategoryActivity extends AppCompatActivity
         iconsListAdapter = new IconsListAdapter(icons , this);
         listView.setAdapter(iconsListAdapter);
         iconsListAdapter.notifyDataSetChanged();
+
     }
 }
