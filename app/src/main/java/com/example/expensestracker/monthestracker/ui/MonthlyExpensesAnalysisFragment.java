@@ -1,6 +1,8 @@
 package com.example.expensestracker.monthestracker.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +24,7 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.MarkerType;
 import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
+import com.example.expensestracker.CustomButton;
 import com.example.expensestracker.R;
 import com.example.expensestracker.budget_categories.BudgetCategoryManager;
 import com.example.expensestracker.monthestracker.MonthsTracker;
@@ -56,6 +59,24 @@ public class MonthlyExpensesAnalysisFragment extends Fragment
             }
 
             buildAnalysisChart(anyChartView, data);
+
+            /*
+             * Added by Mahan
+             * Issue: Custom Button
+             * ==================================================
+             */
+
+            CustomButton customButton = root.findViewById(R.id.customButton);
+
+            customButton.setOnCustomButtonClickListener(() -> {
+                // Handle button click here
+                // Add your custom logic for the button click event
+//                    Toast.makeText(AddingTransactionActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
+
+                String url = "https://github.com/Nada-Nasser/Money-Manager-App"; // Replace with your URL
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            });
         }
         catch (Exception e)
         {

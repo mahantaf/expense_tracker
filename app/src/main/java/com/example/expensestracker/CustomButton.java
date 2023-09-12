@@ -19,7 +19,7 @@ public class CustomButton extends View {
 
     private Paint paint;
     private boolean isPressed = false;
-    private String buttonText = "Click Me";
+    private String buttonText = "More Information";
     private OnCustomButtonClickListener clickListener;
 
 

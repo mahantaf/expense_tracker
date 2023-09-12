@@ -67,9 +67,6 @@ public class AddingTransactionActivity extends AppCompatActivity {
             productCategorySpinner.setSelection(0);
 
 
-
-
-
             /*
              * Added by Mahan
              * Issue: Traversal Order
@@ -89,28 +86,6 @@ public class AddingTransactionActivity extends AppCompatActivity {
             /*
              * ==================================================
              */
-
-
-            /*
-             * Added by Mahan
-             * Issue: Custom Button
-             * ==================================================
-             */
-
-            CustomButton customButton = findViewById(R.id.customButton);
-
-            customButton.setOnCustomButtonClickListener(new CustomButton.OnCustomButtonClickListener() {
-                @Override
-                public void onCustomButtonClick() {
-                    // Handle button click here
-                    // Add your custom logic for the button click event
-//                    Toast.makeText(AddingTransactionActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
-
-                    String url = "https://github.com/Nada-Nasser/Money-Manager-App"; // Replace with your URL
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                }
-            });
 
 
         } catch (Exception e) {
