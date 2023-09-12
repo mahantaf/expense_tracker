@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.expensestracker.budget_categories.ui.BudgetCategoryInfoFragment;
 
@@ -46,7 +47,7 @@ public class BudgetManagerFragment extends Fragment {
             budgetCategories = new ArrayList<>();
             budgetCategories = BudgetCategoryManager.getBudgetCategories();
 
-            budgetManagerListAdapter = new BudgetManagerListAdapter(context, budgetCategories);
+            budgetManagerListAdapter = new BudgetManagerListAdapter(context, budgetCategories, fragmentActivity.getSupportFragmentManager());
 
             budgetCategoryListView.setAdapter(budgetManagerListAdapter);
             budgetManagerListAdapter.notifyDataSetChanged();

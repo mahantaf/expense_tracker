@@ -37,11 +37,11 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/product_name"
                 app:startIconDrawable="@drawable/icon_shopaholic"
                 app:counterEnabled="true"
-                app:counterMaxLength="50"
+                app:counterMaxLength="10"
                 app:endIconMode="clear_text"
+                android:hint="Enter Info"
                 app:startIconContentDescription="@string/content_description_end_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -52,6 +52,16 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textSize="16.0dp"
+                android:importantForAccessibility="no">
+
+            </TextView>
+
+
             <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20.0dp"/>
@@ -60,8 +70,8 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/product_price"
                 app:startIconDrawable="@drawable/ic_dollar"
+                android:hint="Enter Info"
                 app:endIconMode="clear_text"
                 app:prefixText="$"
                 app:startIconContentDescription="@string/content_description_end_icon"
@@ -75,6 +85,15 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Price"
+                android:textSize="16.0dp"
+                android:importantForAccessibility="no"
+                >
+
+            </TextView>
             <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="20.0dp"/>

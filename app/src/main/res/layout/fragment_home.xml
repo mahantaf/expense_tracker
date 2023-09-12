@@ -72,7 +72,8 @@
             android:layout_marginLeft="20dp"
             android:layout_toEndOf="@+id/t"
             android:text="0.0"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:importantForAccessibility="no"/>
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -83,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="Add Expense Button"
         app:srcCompat="@android:drawable/ic_input_add"
         android:src="@drawable/ic_paper_money"/>
 
