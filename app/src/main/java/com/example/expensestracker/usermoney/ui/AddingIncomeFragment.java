@@ -2,6 +2,9 @@ package com.example.expensestracker.usermoney.ui;
 
 import android.os.Bundle;
 
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
@@ -29,6 +32,22 @@ public class AddingIncomeFragment extends DialogFragment implements View.OnClick
         Button addIncomeButton = addingIncomeView.findViewById(R.id.add_income_button);
 
         addIncomeButton.setOnClickListener(this);
+
+        /*
+         * Added by Mahan
+         * Issue: Traversal Order
+         * ==================================================
+         */
+
+        ViewCompat.setAccessibilityDelegate(addIncomeButton, new AccessibilityDelegateCompat() {
+            @Override
+            public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info) {
+                info.setTraversalBefore(incomeEditText);
+                super.onInitializeAccessibilityNodeInfo(host, info);
+            }
+        });
+
+
         return addingIncomeView;
     }
 

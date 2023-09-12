@@ -68,22 +68,6 @@ public class AddingTransactionActivity extends AppCompatActivity {
 
 
             /*
-             * Added by Mahan
-             * Issue: Traversal Order
-             * ==================================================
-             */
-
-            ViewCompat.setAccessibilityDelegate(productPriceTextField, new AccessibilityDelegateCompat() {
-                @Override
-                public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info) {
-                    info.setTraversalAfter(productNameTextField);
-                    info.setTraversalBefore(productCategorySpinner);
-                    super.onInitializeAccessibilityNodeInfo(host, info);
-                }
-            });
-
-
-            /*
              * ==================================================
              */
 
