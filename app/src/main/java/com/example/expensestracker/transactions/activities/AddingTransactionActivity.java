@@ -67,40 +67,7 @@ public class AddingTransactionActivity extends AppCompatActivity {
             productCategorySpinner.setSelection(0);
 
 
-            /*
-             * Added by Mahan
-             * Issue: Clickable Span
-             * ==================================================
-             */
 
-            TextView textView = findViewById(R.id.textView);
-
-            // Create a SpannableString from the text
-            SpannableString spannableString = new SpannableString(textView.getText());
-
-            // Create a ClickableSpan for the URL
-            ClickableSpan clickableSpan = new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull View widget) {
-                    // Handle the click action by opening the URL in a web browser
-                    String url = "https://google.com"; // Replace with your URL
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                }
-            };
-
-            // Set the ClickableSpan to the specific range of the URL
-            int start = textView.getText().toString().indexOf("website");
-            int end = start + "website".length();
-            spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            // Set the modified SpannableString to the TextView
-            textView.setText(spannableString);
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
-
-            /*
-             * ==================================================
-             */
 
 
             /*
@@ -137,9 +104,9 @@ public class AddingTransactionActivity extends AppCompatActivity {
                 public void onCustomButtonClick() {
                     // Handle button click here
                     // Add your custom logic for the button click event
-                    Toast.makeText(AddingTransactionActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(AddingTransactionActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
 
-                    String url = "https://google.com"; // Replace with your URL
+                    String url = "https://github.com/Nada-Nasser/Money-Manager-App"; // Replace with your URL
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
                 }
