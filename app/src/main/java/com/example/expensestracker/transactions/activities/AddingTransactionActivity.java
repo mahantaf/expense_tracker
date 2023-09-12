@@ -69,42 +69,6 @@ public class AddingTransactionActivity extends AppCompatActivity {
 
             /*
              * Added by Mahan
-             * Issue: Clickable Span
-             * ==================================================
-             */
-
-            TextView textView = findViewById(R.id.textView);
-
-            // Create a SpannableString from the text
-            SpannableString spannableString = new SpannableString(textView.getText());
-
-            // Create a ClickableSpan for the URL
-            ClickableSpan clickableSpan = new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull View widget) {
-                    // Handle the click action by opening the URL in a web browser
-                    String url = "https://google.com"; // Replace with your URL
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                }
-            };
-
-            // Set the ClickableSpan to the specific range of the URL
-            int start = textView.getText().toString().indexOf("website");
-            int end = start + "website".length();
-            spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            // Set the modified SpannableString to the TextView
-            textView.setText(spannableString);
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
-
-            /*
-             * ==================================================
-             */
-
-
-            /*
-             * Added by Mahan
              * Issue: Traversal Order
              * ==================================================
              */
@@ -124,28 +88,6 @@ public class AddingTransactionActivity extends AppCompatActivity {
              */
 
 
-            /*
-             * Added by Mahan
-             * Issue: Custom Button
-             * ==================================================
-             */
-
-            CustomButton customButton = findViewById(R.id.customButton);
-
-            customButton.setOnCustomButtonClickListener(new CustomButton.OnCustomButtonClickListener() {
-                @Override
-                public void onCustomButtonClick() {
-                    // Handle button click here
-                    // Add your custom logic for the button click event
-                    Toast.makeText(AddingTransactionActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
-
-                    String url = "https://google.com"; // Replace with your URL
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                }
-            });
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,19 +103,27 @@ public class AddingTransactionActivity extends AppCompatActivity {
 
                 // TODO : dont allow future transactions
 
-                BudgetCategory budgetCategory = BudgetCategoryManager.
-                        getBudgetCategoryByName(productCategorySpinner.getSelectedItem().toString());
+                if (productCategorySpinner.getAdapter() != null && productCategorySpinner.getAdapter().getCount() == 0) {
+                    Toast.makeText(getApplicationContext() , "Please create budget categories first", Toast.LENGTH_LONG).show();
+                } else {
+                    BudgetCategory budgetCategory = BudgetCategoryManager.
+                            getBudgetCategoryByName(productCategorySpinner.getSelectedItem().toString());
 
-                String productName = productNameTextField.getText().toString();
-                double productPrice = Double.parseDouble(productPriceTextField.getText().toString());
+                    String productName = productNameTextField.getText().toString();
+                    double productPrice = Double.parseDouble(productPriceTextField.getText().toString());
 
+                    if (infoMissing(productName, productPrice)){
+                        Toast.makeText(getApplicationContext() , "Please fill up all necessary information", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Transaction transaction = new Transaction(budgetCategory.getID(), productName, productPrice, transactionDate);
+                        TransactionManager.addNewTransaction(transaction);
 
-                Transaction transaction = new Transaction(budgetCategory.getID(), productName, productPrice, transactionDate);
-                TransactionManager.addNewTransaction(transaction);
+                        makeLongToast(transaction.toString());
 
-                makeLongToast(transaction.toString());
-
-                UserWallet.takeFromWallet(productPrice);
+                        UserWallet.takeFromWallet(productPrice);
+                    }
+                }
             }
             else
             {
@@ -188,6 +138,11 @@ public class AddingTransactionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private boolean infoMissing(String productName, double productPrice) {
+        Log.i("TAG", productName + " x $" + String.valueOf(productPrice));
+        return false;
     }
 
     private Date getDateFromDatePicker() {

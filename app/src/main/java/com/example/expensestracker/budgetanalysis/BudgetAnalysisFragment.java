@@ -1,14 +1,22 @@
 package com.example.expensestracker.budgetanalysis;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -21,7 +29,6 @@ import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
 import com.example.expensestracker.R;
 import com.example.expensestracker.budget_categories.BudgetCategoryManager;
-import com.example.expensestracker.budget_categories.ui.BudgetCategoryListAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +62,41 @@ public class BudgetAnalysisFragment extends Fragment {
 
             buildAnalysisChart(anyChartView, "Your Expenses per category this Month", "Budget Categories"
                     , data);
+
+            /*
+             * Added by Mahan
+             * Issue: Clickable Span
+             * ==================================================
+             */
+
+            TextView textView = root.findViewById(R.id.clickableSpanText);
+
+            // Create a SpannableString from the text
+            SpannableString spannableString = new SpannableString(textView.getText());
+
+            // Create a ClickableSpan for the URL
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    // Handle the click action by opening the URL in a web browser
+                    String url = "https://github.com/Nada-Nasser/Money-Manager-App"; // Replace with your URL
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                }
+            };
+
+            // Set the ClickableSpan to the specific range of the URL
+            int start = textView.getText().toString().indexOf("website");
+            int end = start + "website".length();
+            spannableString.setSpan(clickableSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            // Set the modified SpannableString to the TextView
+            textView.setText(spannableString);
+            textView.setMovementMethod(LinkMovementMethod.getInstance());
+
+            /*
+             * ==================================================
+             */
         }
         catch (Exception e)
         {

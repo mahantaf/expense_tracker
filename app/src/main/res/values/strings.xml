@@ -57,5 +57,6 @@
     <string name="new_transaction">Add New Transaction</string>
     <string name="visit_our_website">Visit our website</string>
     <string name="type_something_here">Type something here</string>
+    <string name="for_more_information">For more information:</string>
 
 </resources>
