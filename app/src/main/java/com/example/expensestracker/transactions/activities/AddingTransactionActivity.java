@@ -103,19 +103,27 @@ public class AddingTransactionActivity extends AppCompatActivity {
 
                 // TODO : dont allow future transactions
 
-                BudgetCategory budgetCategory = BudgetCategoryManager.
-                        getBudgetCategoryByName(productCategorySpinner.getSelectedItem().toString());
+                if (productCategorySpinner.getAdapter() != null && productCategorySpinner.getAdapter().getCount() == 0) {
+                    Toast.makeText(getApplicationContext() , "Please create budget categories first", Toast.LENGTH_LONG).show();
+                } else {
+                    BudgetCategory budgetCategory = BudgetCategoryManager.
+                            getBudgetCategoryByName(productCategorySpinner.getSelectedItem().toString());
 
-                String productName = productNameTextField.getText().toString();
-                double productPrice = Double.parseDouble(productPriceTextField.getText().toString());
+                    String productName = productNameTextField.getText().toString();
+                    double productPrice = Double.parseDouble(productPriceTextField.getText().toString());
 
+                    if (infoMissing(productName, productPrice)){
+                        Toast.makeText(getApplicationContext() , "Please fill up all necessary information", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Transaction transaction = new Transaction(budgetCategory.getID(), productName, productPrice, transactionDate);
+                        TransactionManager.addNewTransaction(transaction);
 
-                Transaction transaction = new Transaction(budgetCategory.getID(), productName, productPrice, transactionDate);
-                TransactionManager.addNewTransaction(transaction);
+                        makeLongToast(transaction.toString());
 
-                makeLongToast(transaction.toString());
-
-                UserWallet.takeFromWallet(productPrice);
+                        UserWallet.takeFromWallet(productPrice);
+                    }
+                }
             }
             else
             {
@@ -130,6 +138,11 @@ public class AddingTransactionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private boolean infoMissing(String productName, double productPrice) {
+        Log.i("TAG", productName + " x $" + String.valueOf(productPrice));
+        return false;
     }
 
     private Date getDateFromDatePicker() {
